@@ -1,6 +1,6 @@
 package org.pablochitolina.exercicio.jpa.adapter;
 
-import org.pablochitolina.exercicio.domain.port.BusPersistencePort;
+import org.pablochitolina.exercicio.domain.port.busroute.BusRoutePersistencePort;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -8,8 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 
 @SpringBootTest(classes = {
-        BusJpaAdapter.class,
-        BusPersistencePort.class})
+        BusRouteJpaAdapter.class,
+        BusRoutePersistencePort.class})
 public class BusJpaAdapterTest {
 /*
     private static final String TEST_AUTHOR = "Beyonce";

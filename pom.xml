@@ -9,7 +9,6 @@
         <module>exercicio-jpa</module>
         <module>exercicio-integration</module>
         <module>exercicio-starter</module>
-        <module>exercicio-test</module>
         <module>exercicio-rest</module>
     </modules>
     <parent>

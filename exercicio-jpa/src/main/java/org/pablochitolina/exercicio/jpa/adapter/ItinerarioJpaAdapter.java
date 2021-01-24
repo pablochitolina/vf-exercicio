@@ -1,7 +1,7 @@
 package org.pablochitolina.exercicio.jpa.adapter;
 
 import org.pablochitolina.exercicio.domain.data.persistence.ItineraryPersistenceDto;
-import org.pablochitolina.exercicio.domain.exception.ItineraryNotFoundException;
+import org.pablochitolina.exercicio.domain.exception.NotFoundException;
 import org.pablochitolina.exercicio.domain.port.itinerary.ItineraryPersistencePort;
 import org.pablochitolina.exercicio.jpa.mapper.ItineraryJpaMapper;
 import org.pablochitolina.exercicio.jpa.model.ItineraryJpaEntity;
@@ -37,12 +37,12 @@ public class ItinerarioJpaAdapter implements ItineraryPersistencePort {
 
     @Override
     public ItineraryPersistenceDto getItineraryById(Long id) {
-        return ItineraryJpaMapper.toDto(itineraryJpaRepository.findById(id).orElseThrow(() -> new ItineraryNotFoundException(id)));
+        return ItineraryJpaMapper.toDto(itineraryJpaRepository.findById(id).orElseThrow(() -> new NotFoundException(id)));
     }
 
     @Override
     public ItineraryPersistenceDto getItineraryByBusRouteId(Long id) {
-        return ItineraryJpaMapper.toDto(itineraryJpaRepository.findItineraryByBusRouteId(id).orElseThrow(() -> new ItineraryNotFoundException(id)));
+        return ItineraryJpaMapper.toDto(itineraryJpaRepository.findItineraryByBusRouteId(id).orElseThrow(() -> new NotFoundException(id)));
     }
 
     @Override

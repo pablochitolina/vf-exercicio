@@ -1,7 +1,7 @@
 package org.pablochitolina.exercicio.jpa.adapter;
 
 import org.pablochitolina.exercicio.domain.data.persistence.BusRoutePersistenceDto;
-import org.pablochitolina.exercicio.domain.exception.BusRouteNotFoundException;
+import org.pablochitolina.exercicio.domain.exception.NotFoundException;
 import org.pablochitolina.exercicio.domain.port.busroute.BusRoutePersistencePort;
 import org.pablochitolina.exercicio.jpa.mapper.BusRouteJpaMapper;
 import org.pablochitolina.exercicio.jpa.repository.BusRouteJpaRepository;
@@ -42,6 +42,6 @@ public class BusRouteJpaAdapter implements BusRoutePersistencePort {
 
     @Override
     public BusRoutePersistenceDto getBusRouteById(Long id) {
-        return BusRouteJpaMapper.toDto(busRouteJpaRepository.findById(id).orElseThrow(() -> new BusRouteNotFoundException(id)));
+        return BusRouteJpaMapper.toDto(busRouteJpaRepository.findById(id).orElseThrow(() -> new NotFoundException(id)));
     }
 }

@@ -6,13 +6,14 @@ import org.pablochitolina.exercicio.domain.data.integration.ItineraryIntegration
 import org.pablochitolina.exercicio.domain.data.persistence.ItineraryPersistenceDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Slf4j
 @RestController
-public class ItineraryControllerImpl implements ItineraryController {
+@RequestMapping(value = "/v1/itineraries")
+public class ItineraryControllerImpl implements ItineraryAPI {
 
     private final ItineraryService itineraryService;
 
@@ -20,42 +21,42 @@ public class ItineraryControllerImpl implements ItineraryController {
         this.itineraryService = itineraryService;
     }
 
-    @Override
+    @GetMapping("/integration/{unit}")
     public ResponseEntity<ItineraryIntegrationDto> getBusItineraryByUnit(String unit) {
         return new ResponseEntity<>(itineraryService.getBusItineraryByUnit(unit), HttpStatus.OK);
     }
 
-    @Override
+    @PostMapping
     public ResponseEntity<ItineraryPersistenceDto> addItinerary(ItineraryPersistenceDto itineraryIntegrationDto) {
         var dto = itineraryService.addItinerary(itineraryIntegrationDto);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
-    @Override
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> removeItinerary(Long id) {
         itineraryService.removeItinerary(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @Override
+    @GetMapping("/{id}")
     public ResponseEntity<ItineraryPersistenceDto> getItineraryById(Long id) {
         var dto = itineraryService.getItineraryById(id);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
-    @Override
+    @GetMapping("/list")
     public ResponseEntity<List<ItineraryPersistenceDto>> getAllItineraries() {
         var listDto = itineraryService.getAllItineraries();
         return new ResponseEntity<>(listDto, HttpStatus.OK);
     }
 
-    @Override
+    @GetMapping("/bus-route/{id}")
     public ResponseEntity<ItineraryPersistenceDto> getItineraryByBusRouteId(Long id) {
         var dto = itineraryService.getItineraryByBusRouteId(id);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
-    @Override
+    @GetMapping("/list-by-coordinate-range")
     public ResponseEntity<List<ItineraryPersistenceDto>> getItinerariesByRange(Double lat, Double lng, Double range) {
         var listDto = itineraryService.getItinerariesByRange(lat, lng, range);
         return new ResponseEntity<>(listDto, HttpStatus.OK);

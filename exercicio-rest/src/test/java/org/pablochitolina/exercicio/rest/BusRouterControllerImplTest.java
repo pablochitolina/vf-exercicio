@@ -1,8 +1,8 @@
 package org.pablochitolina.exercicio.rest;
 
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.pablochitolina.exercicio.rest.api.busroute.BusRouteController;
-import org.pablochitolina.exercicio.rest.api.busroute.BusRouteControllerImpl;
+import org.pablochitolina.exercicio.rest.api.busroute.BusRouteAPI;
+import org.pablochitolina.exercicio.rest.api.busroute.BusRouteAPIImpl;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -10,8 +10,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(BusRouteControllerImpl.class)
-@ContextConfiguration(classes = {BusRouteController.class, BusRouteControllerImpl.class})
+@WebMvcTest(BusRouteAPIImpl.class)
+@ContextConfiguration(classes = {BusRouteAPI.class, BusRouteAPIImpl.class})
 public class BusRouterControllerImplTest {
 /*
     private static final String TEST_AUTHOR = "Rita Ora";

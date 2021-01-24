@@ -5,7 +5,7 @@ import org.pablochitolina.exercicio.domain.data.persistence.BusRoutePersistenceD
 import org.pablochitolina.exercicio.domain.exception.BusRouteNotFoundException;
 import org.pablochitolina.exercicio.domain.port.busroute.BusRoutePersistencePort;
 import org.pablochitolina.exercicio.jpa.mapper.BusRouteJpaMapper;
-import org.pablochitolina.exercicio.jpa.repository.BusJpaRepository;
+import org.pablochitolina.exercicio.jpa.repository.BusRouteJpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,23 +15,23 @@ import java.util.stream.Collectors;
 @Service
 public class BusRouteJpaAdapter implements BusRoutePersistencePort {
 
-    private BusJpaRepository busJpaRepository;
+    private BusRouteJpaRepository busRouteJpaRepository;
 
-    public BusRouteJpaAdapter(BusJpaRepository busJpaRepository) {
-        this.busJpaRepository = busJpaRepository;
+    public BusRouteJpaAdapter(BusRouteJpaRepository busRouteJpaRepository) {
+        this.busRouteJpaRepository = busRouteJpaRepository;
     }
 
     @Override
     public BusRoutePersistenceDto addBusRoute(BusRoutePersistenceDto busRouteDto) {
         final var busRotueEntity = BusRouteJpaMapper.toEntity(busRouteDto);
-        var entity = busJpaRepository.save(busRotueEntity);
+        var entity = busRouteJpaRepository.save(busRotueEntity);
 
         return BusRouteJpaMapper.toDto(entity);
     }
 
     @Override
     public void removeBusRoute(Long id) {
-        busJpaRepository.deleteById(id);
+        busRouteJpaRepository.deleteById(id);
     }
 
     /*@Override
@@ -51,7 +51,7 @@ public class BusRouteJpaAdapter implements BusRoutePersistencePort {
 
     @Override
     public List<BusRoutePersistenceDto> getAllBusRoutes() {
-        return busJpaRepository.findAll()
+        return busRouteJpaRepository.findAll()
                 .stream()
                 .map(BusRouteJpaMapper::toDto)
                 .collect(Collectors.toList());
@@ -60,6 +60,6 @@ public class BusRouteJpaAdapter implements BusRoutePersistencePort {
     @SneakyThrows
     @Override
     public BusRoutePersistenceDto getBusRouteById(Long id) {
-        return BusRouteJpaMapper.toDto(busJpaRepository.findById(id).orElseThrow((Supplier<Throwable>) () -> new BusRouteNotFoundException(id)));
+        return BusRouteJpaMapper.toDto(busRouteJpaRepository.findById(id).orElseThrow((Supplier<Throwable>) () -> new BusRouteNotFoundException(id)));
     }
 }

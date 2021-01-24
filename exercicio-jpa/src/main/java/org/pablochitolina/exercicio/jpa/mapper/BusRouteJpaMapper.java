@@ -14,7 +14,6 @@ public class BusRouteJpaMapper {
                 .codigo(dto.getCodigo())
                 .nome(dto.getNome())
                 .id(dto.getId())
-                .itinerary(ItineraryJpaMapper.toEntity(dto.getItinerary()))
                 .build();
     }
 
@@ -25,7 +24,6 @@ public class BusRouteJpaMapper {
                 .codigo(entity.getCodigo())
                 .nome(entity.getNome())
                 .id(entity.getId())
-                .itinerary(ItineraryJpaMapper.toDto(entity.getItinerary()))
                 .build();
     }
 }

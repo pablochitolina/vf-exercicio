@@ -26,8 +26,4 @@ public class BusRouteJpaEntity {
     @Column
     private String nome;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "itinerary_id", referencedColumnName = "id")
-    private ItineraryJpaEntity itinerary;
-
 }

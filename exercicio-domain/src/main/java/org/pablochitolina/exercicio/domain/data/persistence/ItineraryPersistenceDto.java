@@ -16,6 +16,7 @@ public class ItineraryPersistenceDto {
     private Long id;
     private String codigo;
     private String nome;
+    private Long busRouteId;
     private List<LocationPersistenceDto> locations;
 
 }

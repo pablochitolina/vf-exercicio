@@ -16,6 +16,7 @@ public class ItineraryJpaMapper {
                 .codigo(dto.getCodigo())
                 .nome(dto.getNome())
                 .id(dto.getId())
+                .busRouteId(dto.getBusRouteId())
                 .locations(dto.getLocations().stream().map(LocationJpaMapper::toEntity).collect(Collectors.toList()))
                 .build();
     }
@@ -27,6 +28,7 @@ public class ItineraryJpaMapper {
                 .codigo(entity.getCodigo())
                 .nome(entity.getNome())
                 .id(entity.getId())
+                .busRouteId(entity.getBusRouteId())
                 .locations(entity.getLocations().stream().map(LocationJpaMapper::toDto).collect(Collectors.toList()))
                 .build();
     }

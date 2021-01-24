@@ -27,8 +27,8 @@ public class ItineraryJpaEntity {
     @Column
     private String nome;
 
-    @OneToOne(mappedBy = "itinerary", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private BusRouteJpaEntity busRoute;
+    @Column
+    private Long busRouteId;
 
     @OneToMany(mappedBy = "itinerary", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<LocationJpaEntity> locations;

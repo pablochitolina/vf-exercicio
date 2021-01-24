@@ -28,4 +28,7 @@ public interface ItineraryController {
     @GetMapping("/bus-route/{id}")
     ResponseEntity<ItineraryPersistenceDto> getItineraryByBusRouteId(@PathVariable Long id);
 
+    @GetMapping("/list-by-coordinate-range")
+    ResponseEntity<List<ItineraryPersistenceDto>> getItinerariesByRange(@RequestParam Double lat, @RequestParam Double lng, @RequestParam Double range);
+
 }

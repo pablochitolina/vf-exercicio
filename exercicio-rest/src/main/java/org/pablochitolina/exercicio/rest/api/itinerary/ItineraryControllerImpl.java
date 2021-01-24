@@ -55,4 +55,10 @@ public class ItineraryControllerImpl implements ItineraryController {
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
+    @Override
+    public ResponseEntity<List<ItineraryPersistenceDto>> getItinerariesByRange(Double lat, Double lng, Double range) {
+        var listDto = itineraryService.getItinerariesByRange(lat, lng, range);
+        return new ResponseEntity<>(listDto, HttpStatus.OK);
+    }
+
 }

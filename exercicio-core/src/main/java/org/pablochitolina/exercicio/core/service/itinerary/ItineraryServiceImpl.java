@@ -1,5 +1,6 @@
 package org.pablochitolina.exercicio.core.service.itinerary;
 
+import org.pablochitolina.exercicio.core.service.util.DistanceCalculation;
 import org.pablochitolina.exercicio.domain.data.integration.ItineraryIntegrationDto;
 import org.pablochitolina.exercicio.domain.data.persistence.ItineraryPersistenceDto;
 import org.pablochitolina.exercicio.domain.port.itinerary.ItineraryIntegrationPort;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ItineraryServiceImpl implements ItineraryService {
@@ -44,6 +46,16 @@ public class ItineraryServiceImpl implements ItineraryService {
     @Override
     public List<ItineraryPersistenceDto> getAllItineraries() {
         return itineraryPersistencePort.getAllItineraries();
+    }
+
+    @Override
+    public List<ItineraryPersistenceDto> getItinerariesByRange(Double lat, Double lng, Double range) {
+        var allItineraries = itineraryPersistencePort.getAllItineraries();
+
+        return allItineraries.stream().filter(
+                i -> i.getLocations().stream().filter(
+                        l -> DistanceCalculation.distFrom(lat, lng , l.getLat(), l.getLng()) < range).count() > 0 )
+                .collect(Collectors.toList());
     }
 
     @Override

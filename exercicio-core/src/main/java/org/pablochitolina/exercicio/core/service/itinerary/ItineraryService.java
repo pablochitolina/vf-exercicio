@@ -17,6 +17,8 @@ public interface ItineraryService {
 
     List<ItineraryPersistenceDto> getAllItineraries();
 
+    List<ItineraryPersistenceDto> getItinerariesByRange(Double lat, Double lng, Double range);
+
     ItineraryPersistenceDto getItineraryByBusRouteId(Long id);
 
 }

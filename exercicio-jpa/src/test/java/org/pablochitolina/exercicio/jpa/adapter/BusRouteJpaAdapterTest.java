@@ -5,6 +5,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.pablochitolina.exercicio.domain.data.persistence.BusRoutePersistenceDto;
 import org.pablochitolina.exercicio.domain.port.busroute.BusRoutePersistencePort;
+import org.pablochitolina.exercicio.jpa.mapper.BusRouteJpaMapper;
 import org.pablochitolina.exercicio.jpa.model.BusRouteJpaEntity;
 import org.pablochitolina.exercicio.jpa.repository.BusRouteJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.only;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest(classes = {
         BusRouteJpaAdapter.class,
@@ -39,6 +39,7 @@ public class BusRouteJpaAdapterTest {
                 .nome(TEST_NOME)
                 .build();
 
+        when(busRouteJpaRepository.save(any())).thenReturn(BusRouteJpaMapper.toEntity(busRouterDto));
         busRoutePersistencePort.addBusRoute(busRouterDto);
 
         verify(busRouteJpaRepository, only()).save(busRouteJpaEntityArgumentCaptor.capture());

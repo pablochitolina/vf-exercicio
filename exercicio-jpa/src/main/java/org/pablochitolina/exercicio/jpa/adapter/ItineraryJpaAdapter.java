@@ -13,11 +13,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class ItinerarioJpaAdapter implements ItineraryPersistencePort {
+public class ItineraryJpaAdapter implements ItineraryPersistencePort {
 
     private ItineraryJpaRepository itineraryJpaRepository;
 
-    public ItinerarioJpaAdapter(ItineraryJpaRepository itineraryJpaRepository) {
+    public ItineraryJpaAdapter(ItineraryJpaRepository itineraryJpaRepository) {
         this.itineraryJpaRepository = itineraryJpaRepository;
     }
 

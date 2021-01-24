@@ -11,11 +11,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/v1/routes")
-public class BusRouteAPIImpl implements BusRouteAPI {
+public class BusRouteControllerImpl implements BusRouteAPI {
 
     private final BusRouteService busRouteService;
 
-    public BusRouteAPIImpl(BusRouteService busRouteService) {
+    public BusRouteControllerImpl(BusRouteService busRouteService) {
         this.busRouteService = busRouteService;
     }
 

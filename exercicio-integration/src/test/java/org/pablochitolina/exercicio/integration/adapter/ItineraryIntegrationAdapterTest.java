@@ -2,7 +2,6 @@ package org.pablochitolina.exercicio.integration.adapter;
 
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
-import org.pablochitolina.exercicio.domain.port.busroute.BusRouteIntegrationPort;
 import org.pablochitolina.exercicio.domain.port.itinerary.ItineraryIntegrationPort;
 import org.pablochitolina.exercicio.integration.model.ItineraryIntegrantionEntity;
 import org.pablochitolina.exercicio.integration.model.LocationIntegrantionEntity;
@@ -17,8 +16,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest(classes = {
-        BusRouteIntegrationAdapter.class,
-        BusRouteIntegrationPort.class})
+        ItineraryIntegrationAdapter.class,
+        ItineraryIntegrationPort.class})
 public class ItineraryIntegrationAdapterTest {
 
     private static final String TEST_ID = "123";

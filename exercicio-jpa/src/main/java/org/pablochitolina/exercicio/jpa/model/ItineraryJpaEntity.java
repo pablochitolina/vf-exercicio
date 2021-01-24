@@ -30,7 +30,8 @@ public class ItineraryJpaEntity {
     @Column
     private Long busRouteId;
 
-    @OneToMany(mappedBy = "itinerary", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL,CascadeType.PERSIST,CascadeType.MERGE }, mappedBy = "itinerary")
+    @Column(nullable = false)
     private List<LocationJpaEntity> locations;
 
 }

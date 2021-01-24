@@ -24,8 +24,8 @@ CREATE TABLE location
   (
      id           BIGINT auto_increment PRIMARY KEY NOT NULL,
      itinerary_id BIGINT,
-     lat          VARCHAR(30) NOT NULL,
-     lng          VARCHAR(30) NOT NULL,
+     lat          DOUBLE NOT NULL,
+     lng          DOUBLE NOT NULL,
      FOREIGN KEY (itinerary_id) REFERENCES itinerary(id)
   );
 

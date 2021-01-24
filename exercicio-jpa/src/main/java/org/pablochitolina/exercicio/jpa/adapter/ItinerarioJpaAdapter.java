@@ -4,6 +4,8 @@ import org.pablochitolina.exercicio.domain.data.persistence.ItineraryPersistence
 import org.pablochitolina.exercicio.domain.exception.ItineraryNotFoundException;
 import org.pablochitolina.exercicio.domain.port.itinerary.ItineraryPersistencePort;
 import org.pablochitolina.exercicio.jpa.mapper.ItineraryJpaMapper;
+import org.pablochitolina.exercicio.jpa.model.ItineraryJpaEntity;
+import org.pablochitolina.exercicio.jpa.model.LocationJpaEntity;
 import org.pablochitolina.exercicio.jpa.repository.ItineraryJpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,10 +23,11 @@ public class ItinerarioJpaAdapter implements ItineraryPersistencePort {
 
     @Override
     public ItineraryPersistenceDto addItinerary(ItineraryPersistenceDto itineraryPersistenceDto) {
-        final var busRotueEntity = ItineraryJpaMapper.toEntity(itineraryPersistenceDto);
-        var entity = itineraryJpaRepository.save(busRotueEntity);
+        var itineraryJpaEntity = ItineraryJpaMapper.toEntity(itineraryPersistenceDto);
 
-        return ItineraryJpaMapper.toDto(entity);
+        itineraryJpaEntity.setLocations(getLocationsWithItineraryEntity(itineraryJpaEntity));
+
+        return ItineraryJpaMapper.toDto(itineraryJpaRepository.save(itineraryJpaEntity));
     }
 
     @Override
@@ -47,6 +50,15 @@ public class ItinerarioJpaAdapter implements ItineraryPersistencePort {
         return itineraryJpaRepository.findAll()
                 .stream()
                 .map(ItineraryJpaMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
+    private List<LocationJpaEntity> getLocationsWithItineraryEntity(ItineraryJpaEntity itineraryJpaEntity){
+        return itineraryJpaEntity.getLocations().stream()
+                .map(l -> {
+                    l.setItinerary(itineraryJpaEntity);
+                    return l;
+                })
                 .collect(Collectors.toList());
     }
 }

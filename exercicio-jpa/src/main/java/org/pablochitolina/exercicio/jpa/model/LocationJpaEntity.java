@@ -21,12 +21,12 @@ public class LocationJpaEntity {
     private Long id;
 
     @Column
-    String lat;
+    Double lat;
 
     @Column
-    String lng;
+    Double lng;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "itinerary_id", referencedColumnName = "id")
+    @ManyToOne( fetch = FetchType.EAGER )
+    @JoinColumn(name = "itinerary_id", nullable = false )
     private ItineraryJpaEntity itinerary;
 }

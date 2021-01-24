@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class LocationPersistenceDto {
 
     Long id;
-    String lat;
-    String lng;
+    Double lat;
+    Double lng;
 
 }

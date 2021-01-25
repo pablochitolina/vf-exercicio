@@ -30,7 +30,7 @@ public interface BusRouteAPI {
     })
     ResponseEntity<List<BusRouteIntegrationDto>> getBusRoutesByName(@PathVariable String name);
 
-    @ApiOperation(value = "Operation to POST or UPDATE (if exists) a Bus Route")
+    @ApiOperation(value = "Operation to POST or UPDATE (if ID exists) a Bus Route")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successful Request", response = BusRouteIntegrationDto.class),
             @ApiResponse(code = 500, message = "Unexpected Error")
@@ -39,10 +39,10 @@ public interface BusRouteAPI {
 
     @ApiOperation(value = "Operation to DELETE a Bus Route")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successful Request", response = String.class),
+            @ApiResponse(code = 202, message = "Successful Request"),
             @ApiResponse(code = 500, message = "Unexpected Error")
     })
-    ResponseEntity<String> removeBusRoute(@PathVariable Long id);
+    ResponseEntity<Void> removeBusRoute(@PathVariable Long id);
 
     @ApiOperation(value = "Operation to GET all Bus Routes from Internal Database")
     @ApiResponses(value = {
@@ -54,6 +54,7 @@ public interface BusRouteAPI {
     @ApiOperation(value = "Operation to GET a Bus Routes by ID")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successful Request", response = BusRouteIntegrationDto.class),
+            @ApiResponse(code = 204, message = "Bus Route Not Found"),
             @ApiResponse(code = 500, message = "Unexpected Error")
     })
     ResponseEntity<BusRoutePersistenceDto> getBusRouteById(@PathVariable Long id);

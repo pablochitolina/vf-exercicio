@@ -1,7 +1,5 @@
 # Exercicio Via Flow app
 
-Documentação: http://localhost:8080/swagger-ui.html
-
 ## Settings
 
 ```bash
@@ -17,5 +15,4 @@ mvn clean package
 docker build -t vf-exercicio-starter .
 docker run -d -p 8080:8080 vf-exercicio-starter
 ```
-
-Docs: http://localhost:8080/swagger-ui.html
+Documentação: http://localhost:8080/swagger-ui.html

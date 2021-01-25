@@ -33,9 +33,9 @@ public class ItineraryControllerImpl implements ItineraryAPI {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> removeItinerary(Long id) {
+    public ResponseEntity<Void> removeItinerary(Long id) {
         itineraryService.removeItinerary(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/{id}")

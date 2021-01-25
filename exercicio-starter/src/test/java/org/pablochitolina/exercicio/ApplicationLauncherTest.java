@@ -70,7 +70,7 @@ public class ApplicationLauncherTest {
         mvc.perform(MockMvcRequestBuilders.delete("/v1/routes/2")
                 .contentType(APPLICATION_JSON)
                 .accept(APPLICATION_JSON))
-                .andExpect(status().isOk());
+                .andExpect(status().isAccepted());
 
         mvc.perform(MockMvcRequestBuilders.get("/v1/routes/2")
                 .accept(APPLICATION_JSON))
@@ -130,7 +130,7 @@ public class ApplicationLauncherTest {
         mvc.perform(MockMvcRequestBuilders.delete("/v1/itineraries/2")
                 .contentType(APPLICATION_JSON)
                 .accept(APPLICATION_JSON))
-                .andExpect(status().isOk());
+                .andExpect(status().isAccepted());
 
         mvc.perform(MockMvcRequestBuilders.get("/v1/itineraries/2")
                 .accept(APPLICATION_JSON))

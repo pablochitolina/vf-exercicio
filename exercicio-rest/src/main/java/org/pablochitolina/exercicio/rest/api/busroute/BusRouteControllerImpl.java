@@ -36,9 +36,9 @@ public class BusRouteControllerImpl implements BusRouteAPI {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> removeBusRoute(Long id) {
+    public ResponseEntity<Void> removeBusRoute(Long id) {
         busRouteService.removeBusRoute(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/list")

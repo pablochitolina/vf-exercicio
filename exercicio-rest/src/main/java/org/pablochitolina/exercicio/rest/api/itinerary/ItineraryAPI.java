@@ -22,7 +22,7 @@ public interface ItineraryAPI {
     })
     ResponseEntity<ItineraryIntegrationDto> getBusItineraryByUnit(@PathVariable String unit);
 
-    @ApiOperation(value = "Operation to POST or UPDATE (if exists) a Itinerary")
+    @ApiOperation(value = "Operation to POST or UPDATE (if ID exists) a Itinerary")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successful Request", response = ItineraryIntegrationDto.class),
             @ApiResponse(code = 500, message = "Unexpected Error")
@@ -31,14 +31,15 @@ public interface ItineraryAPI {
 
     @ApiOperation(value = "Operation to DELETE a Itinerary")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successful Request", response = String.class),
+            @ApiResponse(code = 202, message = "Successful Request"),
             @ApiResponse(code = 500, message = "Unexpected Error")
     })
-    ResponseEntity<String> removeItinerary(@PathVariable Long id);
+    ResponseEntity<Void> removeItinerary(@PathVariable Long id);
 
     @ApiOperation(value = "Operation to GET a Itinerary by ID")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successful Request", response = ItineraryIntegrationDto.class),
+            @ApiResponse(code = 204, message = "Itinerary Not Found"),
             @ApiResponse(code = 500, message = "Unexpected Error")
     })
     ResponseEntity<ItineraryPersistenceDto> getItineraryById(@PathVariable Long id);
@@ -53,6 +54,7 @@ public interface ItineraryAPI {
     @ApiOperation(value = "Operation to GET a Itinerary by Bus Route ID from Internal DataBase")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successful Request", response = ItineraryIntegrationDto.class),
+            @ApiResponse(code = 204, message = "Itinerary Not Found"),
             @ApiResponse(code = 500, message = "Unexpected Error")
     })
     ResponseEntity<ItineraryPersistenceDto> getItineraryByBusRouteId(@PathVariable Long id);

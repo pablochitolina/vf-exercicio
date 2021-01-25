@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Api(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -35,7 +36,7 @@ public interface BusRouteAPI {
             @ApiResponse(code = 200, message = "Successful Request", response = BusRouteIntegrationDto.class),
             @ApiResponse(code = 500, message = "Unexpected Error")
     })
-    ResponseEntity<BusRoutePersistenceDto> addBusRoute(@RequestBody BusRoutePersistenceDto busRoutePersistenceDtoS);
+    ResponseEntity<BusRoutePersistenceDto> addBusRoute(@Valid @RequestBody BusRoutePersistenceDto busRoutePersistenceDtoS);
 
     @ApiOperation(value = "Operation to DELETE a Bus Route")
     @ApiResponses(value = {

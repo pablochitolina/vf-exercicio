@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Api(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -27,7 +28,7 @@ public interface ItineraryAPI {
             @ApiResponse(code = 200, message = "Successful Request", response = ItineraryIntegrationDto.class),
             @ApiResponse(code = 500, message = "Unexpected Error")
     })
-    ResponseEntity<ItineraryPersistenceDto> addItinerary(@RequestBody ItineraryPersistenceDto itineraryIntegrationDto);
+    ResponseEntity<ItineraryPersistenceDto> addItinerary(@Valid @RequestBody ItineraryPersistenceDto itineraryIntegrationDto);
 
     @ApiOperation(value = "Operation to DELETE a Itinerary")
     @ApiResponses(value = {

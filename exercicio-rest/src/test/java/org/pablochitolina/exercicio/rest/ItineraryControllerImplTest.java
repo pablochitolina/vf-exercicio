@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.pablochitolina.exercicio.core.service.itinerary.ItineraryService;
 import org.pablochitolina.exercicio.domain.data.persistence.ItineraryPersistenceDto;
+import org.pablochitolina.exercicio.domain.data.persistence.LocationPersistenceDto;
 import org.pablochitolina.exercicio.rest.api.busroute.BusRouteAPI;
 import org.pablochitolina.exercicio.rest.api.busroute.BusRouteControllerImpl;
 import org.pablochitolina.exercicio.rest.api.itinerary.ItineraryAPI;
@@ -18,6 +19,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.Collections;
+
 import static org.mockito.Mockito.only;
 import static org.mockito.Mockito.verify;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
@@ -29,6 +32,8 @@ public class ItineraryControllerImplTest {
 
     private static final String TEST_NOME = "Nome";
     private static final String TEST_CODIGO = "a-123";
+    private static final Double TEST_LAT= -30.02639557701300000;
+    private static final Double TEST_LNG = -51.22581910954200000;
 
     @Autowired
     private MockMvc mvc;
@@ -40,9 +45,17 @@ public class ItineraryControllerImplTest {
 
     @Test
     void givenBusRoute_whenAddBusRoute_thenEntityIsPortedToService() throws Exception {
+
+        var locationsDto = Collections.singletonList(LocationPersistenceDto.builder()
+                .lat(TEST_LAT)
+                .lng(TEST_LNG)
+                .build());
+
         var itineraryDto = ItineraryPersistenceDto.builder()
                 .codigo(TEST_CODIGO)
                 .nome(TEST_NOME)
+                .locations(locationsDto)
+                .busRouteId(1L)
                 .build();
 
         mvc.perform(MockMvcRequestBuilders.post("/v1/itineraries")

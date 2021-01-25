@@ -6,6 +6,6 @@ import java.io.IOException;
 
 public interface ItineraryIntegrationRepository {
 
-    ItineraryIntegrantionEntity getBusItineraryByUnit(String unit) throws IOException;
+    ItineraryIntegrantionEntity getBusItineraryByUnit(String unit);
 
 }

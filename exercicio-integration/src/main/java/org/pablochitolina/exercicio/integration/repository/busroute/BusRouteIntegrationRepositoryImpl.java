@@ -25,7 +25,7 @@ public class BusRouteIntegrationRepositoryImpl implements BusRouteIntegrationRep
 
 
     @Override
-    public List<BusRouteIntegrantionEntity> getAllBusRoutes() throws IOException {
+    public List<BusRouteIntegrantionEntity> getAllBusRoutes() {
 
         CloseableHttpClient httpClient = HttpClients.createDefault();
 
@@ -54,10 +54,14 @@ public class BusRouteIntegrationRepositoryImpl implements BusRouteIntegrationRep
                 response.close();
             }
 
-        } catch (URISyntaxException e) {
+        } catch (URISyntaxException | IOException e) {
             e.printStackTrace();
         }finally {
-            httpClient.close();
+            try {
+                httpClient.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         return null;

@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface BusRouteIntegrationRepository {
 
-    List<BusRouteIntegrantionEntity> getAllBusRoutes() throws IOException;
+    List<BusRouteIntegrantionEntity> getAllBusRoutes();
 
 }

@@ -29,7 +29,7 @@ public class ItineraryIntegrationRepositoryImpl implements ItineraryIntegrationR
     public static final String URL_LIST_BUS_ROUTES = "http://www.poatransporte.com.br/php/facades/process.php";
 
     @Override
-    public ItineraryIntegrantionEntity getBusItineraryByUnit(String unit) throws IOException {
+    public ItineraryIntegrantionEntity getBusItineraryByUnit(String unit) {
 
         CloseableHttpClient httpClient = HttpClients.createDefault();
 
@@ -61,10 +61,14 @@ public class ItineraryIntegrationRepositoryImpl implements ItineraryIntegrationR
                 response.close();
             }
 
-        } catch (URISyntaxException e) {
+        } catch (URISyntaxException | IOException e) {
             e.printStackTrace();
         }finally {
-            httpClient.close();
+            try {
+                httpClient.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         return null;

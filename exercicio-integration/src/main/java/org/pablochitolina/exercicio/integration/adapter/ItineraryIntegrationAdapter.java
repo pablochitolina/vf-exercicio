@@ -2,12 +2,9 @@ package org.pablochitolina.exercicio.integration.adapter;
 
 import org.pablochitolina.exercicio.domain.data.integration.ItineraryIntegrationDto;
 import org.pablochitolina.exercicio.domain.port.itinerary.ItineraryIntegrationPort;
-
 import org.pablochitolina.exercicio.integration.mapper.ItineraryIntegrationMapper;
 import org.pablochitolina.exercicio.integration.repository.itinerary.ItineraryIntegrationRepository;
 import org.springframework.stereotype.Service;
-
-import java.io.IOException;
 
 @Service
 public class ItineraryIntegrationAdapter implements ItineraryIntegrationPort {
@@ -21,11 +18,7 @@ public class ItineraryIntegrationAdapter implements ItineraryIntegrationPort {
     @Override
     public ItineraryIntegrationDto getBusItineraryByUnit(String unit) {
 
-        try {
-            return ItineraryIntegrationMapper.toDto(itineraryIntegrationRepository.getBusItineraryByUnit(unit));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return ItineraryIntegrationMapper.toDto(itineraryIntegrationRepository.getBusItineraryByUnit(unit));
+
     }
 }

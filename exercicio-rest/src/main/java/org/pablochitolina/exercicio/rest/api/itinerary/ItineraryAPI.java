@@ -8,9 +8,12 @@ import org.pablochitolina.exercicio.domain.data.integration.ItineraryIntegration
 import org.pablochitolina.exercicio.domain.data.persistence.ItineraryPersistenceDto;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Api(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -65,6 +68,8 @@ public interface ItineraryAPI {
             @ApiResponse(code = 200, message = "Successful Request", response = ItineraryPersistenceDto[].class),
             @ApiResponse(code = 500, message = "Unexpected Error")
     })
-    ResponseEntity<List<ItineraryPersistenceDto>> getItinerariesByRange(@RequestParam Double lat, @RequestParam Double lng, @RequestParam Double range);
+    ResponseEntity<List<ItineraryPersistenceDto>> getItinerariesByRange(@RequestParam @NotNull(message = "Longtude is required") Double lat,
+                                                                        @NotNull(message = "Latitude is required") @RequestParam Double lng,
+                                                                        @NotNull(message = "Range is required") @RequestParam Double range);
 
 }
